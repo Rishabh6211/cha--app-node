@@ -28,6 +28,7 @@ module.exports = {
 
     getUser:(req,res) => {
         let user = req.body.user;
+        console.log("user",user)
         chatuserObj.findOne({user:user}).then((userdata => {
             if(userdata){
                 console.log("userdata",userdata)

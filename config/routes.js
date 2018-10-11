@@ -21,7 +21,7 @@ router.get('/', function (req, res) {
 router.post('/chatuser', chatuser.saveUser);
 router.post('/loginuser', chatuser.getUser);
 //router.post('/logout', chatuser.logout);
-//router.get('/onlineuser', chatuser.getAllUser);
+router.get('/onlineuser', chatuser.getAllUser);
 router.post('/token', oauth2.token);
 
 router.get('/api/users/info', guard,
