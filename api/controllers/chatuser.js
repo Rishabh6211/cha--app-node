@@ -6,9 +6,13 @@ module.exports = {
 
     saveUser: (req, res) => {
         let user = req.body.user;
-        chatuserObj.findOne({user:user}).then((userdata => {
+        let email = req.body.email;
+        console.log("req",req.body)
+        chatuserObj.findOne({ user: user}).then((userdata => {
+            console.log("userdata", userdata)
         	if(userdata==null){
 		        chatuserObj(req.body).save().then((data => {
+                    console.log("data",data)
 		        	if(!data){
 		        		res.status(400).json({"message":"something went wrong","code":400})
 		        	}
@@ -18,7 +22,7 @@ module.exports = {
 
 		        })) 
         	}else {
-        		res.status(400).json({"message":"user already register ","code":404})
+        		res.status(400).json({"message":"username already register ","code":404})
 
 
         	}
