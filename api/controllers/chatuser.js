@@ -10,15 +10,15 @@ module.exports = {
         	if(userdata==null){
 		        chatuserObj(req.body).save().then((data => {
 		        	if(!data){
-		        		res.status(400).json({"message":"something went wrong"})
+		        		res.status(400).json({"message":"something went wrong","code":400})
 		        	}
 		        	else{
-		        		res.status(200).json({"message":"Successfully register","data":data})
+		        		res.status(200).json({"message":"Successfully register","data":data,"code":200})
 		        	}
 
 		        })) 
         	}else {
-        		res.status(400).json({"message":"user already register "})
+        		res.status(400).json({"message":"user already register ","code":404})
 
 
         	}
@@ -37,15 +37,15 @@ module.exports = {
                  let data = { $set: { isActive: true } };
                  chatuserObj.findByIdAndUpdate(userId,data).then((data)=>{
                     if(data){
-                        res.status(200).json({"message":"Successfully login","data":userdata})
+                        res.status(200).json({"message":"Successfully login","data":userdata,"code":200})
                     }
                     else{
-                        res.status(400).json({"message":"something went wrong"})
+                        res.status(400).json({"message":"something went wrong","code":400})
                     }
                  })
             }
             else{
-                res.status(400).json({"message":"user not register"})
+                res.status(400).json({ "message": "user not register", "code": 404})
             }
         }))
     },
@@ -53,10 +53,10 @@ module.exports = {
     getAllUser:(req,res) => {
         chatuserObj.find({isActive: true}).then((data)=>{
             if(data){
-                res.status(200).json({"message":"all register user","data":data})
+                res.status(200).json({"message":"all register user","data":data,"code":200})
             }
             else{
-                res.status(400).json({"message":"user not listed"})
+                res.status(400).json({"message":"user not listed","code":400})
             }
         })
     }
