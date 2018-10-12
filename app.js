@@ -148,6 +148,15 @@ io.sockets.on('connection', function(socket){
         
     });
 
+
+setTimeout(() => {
+        io.emit('chat-1',{"data":"data"})
+      }, 5000);
+
+
+socket.on('chat-1', (message) => io.emit('chat-1',"Hii there "));
+
+
     socket.on('listing', (req)=> {
       console.log("inside user")
       chatuserObj.find({isActive: true}).then((data)=>{
